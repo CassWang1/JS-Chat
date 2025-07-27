@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="global-tooltips" class="global-tooltips"></div>
+    
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="JS Chat Logo" class="header-logo">
+                <h1>JS Chat</h1>
+            </div>
+            <!-- User profile section in header - only visible when logged in -->
+            <div id="user-profile" class="user-profile hidden">
+                <div class="avatar-container">
+                    <div class="user-avatar">
+                        <span id="avatar-initial"></span>
+                    </div>
+                    <span id="header-username" class="header-username"></span>
+                </div>
+                <button id="header-logout-button" class="btn-logout">Logout</button>
+            </div>
+        </header>
+        
+        <main id="app">
+
+            <div id="loading-container" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Loading...</p>
+            </div>
+
+            <section id="login-view" class="login-view hidden">
+                <h2>Login</h2>
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="username-input">Username</label>
+                        <input type="text" id="username-input" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <div id="login-error" class="error-message hidden"></div>
+            </section>
+
+            <section id="chat-view" class="chat-view hidden">
+                <div class="chat-tabs">
+                    <button id="public-tab" class="tab-btn active">Public Chat</button>
+                    <button id="dm-tab" class="tab-btn">Direct Messages</button>
+                </div>
+                
+                <div class="chat-layout">
+                    <aside class="users-panel">
+                        <h2>
+                            Online Users
+                            <div class="tooltip" data-tooltip="Click on a user to start a direct message conversation.">
+                                <span class="tooltip-icon">?</span>
+                            </div>
+                        </h2>
+                        <div id="users-loading" class="loading-indicator">
+                            <div class="loading-spinner small"></div>
+                            <p>Loading users...</p>
+                        </div>
+                        <ul id="users-list" class="users-list"></ul>
+                    </aside>
+                    
+                    <div class="chat-main">
+
+                        <div id="public-chat-panel" class="chat-panel">
+                            <div class="chat-messages-container">
+                                <h2>Public Chat</h2>
+                                <div id="messages-loading" class="loading-indicator">
+                                    <div class="loading-spinner small"></div>
+                                    <p>Loading messages...</p>
+                                </div>
+                                <div id="messages-list" class="messages-list"></div>
+                            </div>
+                            
+                            <div class="chat-input-container">
+                                <form id="message-form" class="message-form">
+                                    <input type="text" id="message-input" name="message" placeholder="Type your message here..." required>
+                                    <button type="submit" class="btn-send">Send</button>
+                                </form>
+                                <div id="message-error" class="error-message hidden"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="dm-chat-panel" class="chat-panel hidden">
+                            <div class="chat-messages-container">
+                                <h2>
+                                    Direct Messages
+                                    <div class="notes-feature">
+                                        <div class="tooltip" data-tooltip="Select yourself as recipient to create personal notes that only you can see.">
+                                            <span class="tooltip-icon">i</span>
+                                        </div>
+                                    </div>
+                                </h2>
+                                <div class="dm-header">
+                                    <div class="dm-recipient-container">
+                                        <label for="dm-recipient">To:</label>
+                                        <select id="dm-recipient" name="recipient">
+                                            <option value="" disabled selected>Select a recipient</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="dm-messages-loading" class="loading-indicator">
+                                    <div class="loading-spinner small"></div>
+                                    <p>Loading direct messages...</p>
+                                </div>
+                                <div id="dm-messages-list" class="messages-list"></div>
+                            </div>
+                            
+                            <div class="chat-input-container">
+                                <form id="dm-form" class="message-form">
+                                    <input type="text" id="dm-input" name="message" placeholder="Type your direct message here..." required>
+                                    <button type="submit" class="btn-send">Send</button>
+                                </form>
+                                <div id="dm-error" class="error-message hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="app-footer">
+            <p>JS Chat &copy; 2025 - <span class="footer-text">Make Chatting Easy</span></p>
+        </footer>
+    </div>
+
+    <script src="dist/bundle.js"></script>
+</body>
+</html> 
